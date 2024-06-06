@@ -150,8 +150,9 @@ class _AbsensiPageState extends State<AbsensiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:Colors.white,
         title: const Text('Halaman Presensi'),
-        backgroundColor: const Color.fromARGB(255, 4, 59, 104),
+        
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -159,9 +160,9 @@ class _AbsensiPageState extends State<AbsensiPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Selamat datang di halaman presensi,Dylan Farrel',
+              'Selamat datang di halaman presensi, Silahkan mengisi nama dan NIM anda',
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
