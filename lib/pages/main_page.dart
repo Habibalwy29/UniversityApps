@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'absensi_page.dart'; // Import the AbsensiPage
+import 'absensi_page.dart';
+import 'Pesan_makanan.dart';
+import 'ruang_kelas.dart';
+import 'informasi_ukm.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -95,105 +98,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class PesanMakananPage extends StatefulWidget {
-  @override
-  _PesanMakananPageState createState() => _PesanMakananPageState();
-}
-
-class _PesanMakananPageState extends State<PesanMakananPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pesan Makanan'),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Selamat datang di halaman Pesan Makanan UNY Apps',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 16.0),
-            Text('Pesan Makanan Page'),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class CekRuangKelasPage extends StatefulWidget {
-  @override
-  _CekRuangKelasPageState createState() => _CekRuangKelasPageState();
-}
-
-class _CekRuangKelasPageState extends State<CekRuangKelasPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cek Ruang Kelas'),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Selamat datang di halaman Cek Ruang Kelas UNY Apps',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 16.0),
-            Text('Cek Ruang Kelas Page'),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class InformasiUKMPage extends StatefulWidget {
-  @override
-  _InformasiUKMPageState createState() => _InformasiUKMPageState();
-}
-
-class _InformasiUKMPageState extends State<InformasiUKMPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Informasi UKM'),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Selamat datang di halaman Informasi UKM UNY Apps',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 16.0),
-            Text('Informasi UKM Page'),
-          ],
         ),
       ),
     );
