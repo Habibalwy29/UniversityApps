@@ -1,30 +1,18 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
+import 'absensi_page.dart'; // Import the AbsensiPage
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'UNY Apps',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
   @override
-  State<HomePage> createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -66,10 +54,10 @@ class _HomePageState extends State<HomePage> {
                 crossAxisSpacing: 16.0,
                 mainAxisSpacing: 16.0,
                 children: [
-                  _buildMenuItem(Icons.check_circle, 'Absensi', AbsensiPage(userName: "John")),
-                  _buildMenuItem(Icons.fastfood, 'Pesan Makanan', PesanMakananPage()),
-                  _buildMenuItem(Icons.class_, 'Cek Ruang Kelas', CekRuangKelasPage()),
-                  _buildMenuItem(Icons.info, 'Informasi UKM', InformasiUKMPage()),
+                  _buildMenuItem(context, Icons.check_circle, 'Absensi', const AbsensiPage(userName: "")),
+                  _buildMenuItem(context, Icons.fastfood, 'Pesan Makanan', PesanMakananPage()),
+                  _buildMenuItem(context, Icons.class_, 'Cek Ruang Kelas', CekRuangKelasPage()),
+                  _buildMenuItem(context, Icons.info, 'Informasi UKM', InformasiUKMPage()),
                 ],
               ),
             ),
@@ -79,7 +67,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title, Widget route) {
+  Widget _buildMenuItem(BuildContext context, IconData icon, String title, Widget route) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -113,110 +101,32 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class AbsensiPage extends StatefulWidget {
-  final String userName;
-
-  const AbsensiPage({super.key, required this.userName});
-
+class PesanMakananPage extends StatefulWidget {
   @override
-  _AbsensiPageState createState() => _AbsensiPageState();
+  _PesanMakananPageState createState() => _PesanMakananPageState();
 }
 
-class _AbsensiPageState extends State<AbsensiPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  final _nimController = TextEditingController();
-  bool _submitted = false;
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _nimController.dispose();
-    super.dispose();
-  }
-
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _submitted = true;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Anda telah berhasil presensi')),
-      );
-    }
-  }
-
+class _PesanMakananPageState extends State<PesanMakananPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:Colors.white,
-        title: const Text('Halaman Presensi'),
-        
+        title: const Text('Pesan Makanan'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Selamat datang di halaman presensi, Silahkan mengisi nama dan NIM anda',
-              style: const TextStyle(
-                fontSize: 16,
+              'Selamat datang di halaman Pesan Makanan UNY Apps',
+              style: TextStyle(
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16.0),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: _nameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Nama',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Nama tidak boleh kosong';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 16.0),
-                  TextFormField(
-                    controller: _nimController,
-                    decoration: const InputDecoration(
-                      labelText: 'NIM',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'NIM tidak boleh kosong';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 16.0),
-                  ElevatedButton(
-                    onPressed: _submitForm,
-                    child: const Text('Absen'),
-                  ),
-                  if (_submitted)
-                    const Padding(
-                      padding: EdgeInsets.only(top: 16.0),
-                      child: Text(
-                        'Anda telah berhasil presensi',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
+            SizedBox(height: 16.0),
+            Text('Pesan Makanan Page'),
           ],
         ),
       ),
@@ -224,44 +134,72 @@ class _AbsensiPageState extends State<AbsensiPage> {
   }
 }
 
-class PesanMakananPage extends StatelessWidget {
+class CekRuangKelasPage extends StatefulWidget {
+  @override
+  _CekRuangKelasPageState createState() => _CekRuangKelasPageState();
+}
+
+class _CekRuangKelasPageState extends State<CekRuangKelasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Halaman Pesan Makanan'),
+        title: const Text('Cek Ruang Kelas'),
       ),
-      body: Center(
-        child: Text('Halaman Pesan Makanan'),
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Selamat datang di halaman Cek Ruang Kelas UNY Apps',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16.0),
+            Text('Cek Ruang Kelas Page'),
+          ],
+        ),
       ),
     );
   }
 }
 
-class CekRuangKelasPage extends StatelessWidget {
+class InformasiUKMPage extends StatefulWidget {
+  @override
+  _InformasiUKMPageState createState() => _InformasiUKMPageState();
+}
+
+class _InformasiUKMPageState extends State<InformasiUKMPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Halaman Cek Ruang Kelas'),
+        title: const Text('Informasi UKM'),
       ),
-      body: Center(
-        child: Text('Halaman Cek Ruang Kelas'),
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Selamat datang di halaman Informasi UKM UNY Apps',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16.0),
+            Text('Informasi UKM Page'),
+          ],
+        ),
       ),
     );
   }
 }
 
-class InformasiUKMPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Halaman Informasi UKM'),
-      ),
-      body: Center(
-        child: Text('Halaman Informasi UKM'),
-      ),
-    );
-  }
+void main() {
+  runApp(MyApp());
 }

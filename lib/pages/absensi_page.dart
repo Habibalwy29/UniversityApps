@@ -37,16 +37,17 @@ class _AbsensiPageState extends State<AbsensiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: const Text('Halaman Presensi'),
-        backgroundColor: const Color.fromARGB(255, 4, 59, 104),
+        backgroundColor: Colors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Selamat datang di halaman presensi, ${widget.userName}',
+              'Selamat datang di halaman presensi,Silahkan masukkan Nama dan NIM anda ',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -91,7 +92,7 @@ class _AbsensiPageState extends State<AbsensiPage> {
                   ),
                   if (_submitted)
                     const Padding(
-                      padding: EdgeInsets.only(top: 16.0),
+                      padding: EdgeInsets.only(top: 12.0),
                       child: Text(
                         'Anda telah berhasil presensi',
                         style: TextStyle(
